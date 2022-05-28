@@ -1,5 +1,7 @@
 # richuru - Using Rich in Loguru to colour the logs
 
+[简体中文](README.zh.md) | English
+
 richuru is a lightweight dependency that provides [`rich`](https://github.com/willmcgugan/rich)'s powerful terminal rendering support for [`loguru`](https://github.com/Delgan/loguru).
 
 This project is sourced and independent from the component `graia.amnesia.log` of [`Graia Amnesia`](https://github.com/GraiaProject/Amnesia),
@@ -58,7 +60,7 @@ from rich.markdown import Markdown
 with open("README.md") as readme:
     markdown = Markdown(readme.read())
 
-logger.info("fallback msg", raw=markdown)
+logger.info("fallback msg", rich=markdown)
 ```
 
 This works with static elements like `Table`, `Markdown`, and dynamic elements like `Status`, `Progress`, which have not been tested yet.

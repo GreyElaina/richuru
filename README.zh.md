@@ -1,5 +1,7 @@
 # richuru - 在 Loguru 中使用 Rich 为日志增色
 
+简体中文 | [English](README.md)
+
 richuru 是一个轻量级的依赖, 为 [`loguru`](https://github.com/Delgan/loguru) 提供 [`rich`](https://github.com/willmcgugan/rich) 强大的终端渲染支持.
 
 本项目来源并独立自 [`Graia Amnesia`](https://github.com/GraiaProject/Amnesia) 的组件 `graia.amnesia.log`,
@@ -58,7 +60,7 @@ from rich.markdown import Markdown
 with open("README.md") as readme:
     markdown = Markdown(readme.read())
 
-logger.info("fallback msg", raw=markdown)
+logger.info("fallback msg", rich=markdown)
 ```
 
 这适用于像是 `Table`, `Markdown` 这样的静态元素, 而像是 `Status`, `Progress` 这样的动态元素还尚未经过测试.
