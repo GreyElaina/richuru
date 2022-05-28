@@ -42,14 +42,8 @@ logger.info("i'm in rich!", style="bold red")
 which is equivalent to :
 
 ```python
-logger.info("[bold red]i'm in rich![/]", alt="[bold red]i'm in rich![/]")
-```
-
-This pattern only works if ``richuru`'' is used as a mandatory dependency, otherwise the typography you write will be reproduced exactly as it is:
-
-```
-[05/28/22 11:37:21]
-INFO [bold red]i'm in rich![/] 
+logger.info("i'm in rich!", alt="[bold red]i'm in rich![/]")
+# without richuru: no, you are not in rich :P
 ```
 
 Print the `ConsoleRenderable` object:

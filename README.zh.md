@@ -42,14 +42,8 @@ logger.info("i'm in rich!", style="bold red")
 其等同于:
 
 ```python
-logger.info("[bold red]i'm in rich![/]", alt="[bold red]i'm in rich![/]")
-```
-
-这种模式仅适用于将 `richuru` 用作必选依赖的情况, 否则你编写的排版样式会如实重现:
-
-```
-[05/28/22 11:37:21]
-INFO     [bold red]i'm in rich![/] 
+logger.info("i'm in rich!", alt="[bold red]i'm in rich![/]")
+# 实际上你一点也不 rich, 如果你没使用 richuru; just a joke :P
 ```
 
 打印 `ConsoleRenderable` 对象:
