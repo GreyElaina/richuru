@@ -111,6 +111,7 @@ def install(
     tb_suppress: Iterable[Union[str, types.ModuleType]] = (),
     time_format: Union[str, Callable[[datetime], Text]] = "[%x %X]",
     keywords: Optional[List[str]] = None,
+    level: Union[int, str] = 0,
 ) -> None:
     """Install Rich logging and Loguru exception hook"""
     logging.basicConfig(handlers=[LoguruHandler()], level=0)
@@ -137,7 +138,7 @@ def install(
                     keywords=keywords,
                 ),
                 "format": (lambda _: "{message}") if rich_traceback else "{message}",
-                "level": 0,
+                "level": level,
             }
         ]
     )
