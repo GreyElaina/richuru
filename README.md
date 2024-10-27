@@ -65,8 +65,15 @@ When you need to use dynamic elements, you need to pass the rich `Console` objec
 from richuru import install
 from rich import Console
 
-console = Console()
-install(console=console)
+console = Console(
+    theme=Theme(  # required, otherwise the color will be incorrect
+        {
+            'logging.level.success': 'green',
+            'logging.level.trace': 'bright_black',
+        }
+    )
+)
+install(rich_console=console)
 
 with Progress(
     TextColumn('[bold green]{task.description}'),

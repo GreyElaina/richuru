@@ -65,8 +65,15 @@ logger.info("fallback msg", rich=markdown)
 from richuru import install
 from rich import Console
 
-console = Console()
-install(console=console)
+console = Console(
+    theme=Theme(  # 需要设定，否则色彩不正确
+        {
+            'logging.level.success': 'green',
+            'logging.level.trace': 'bright_black',
+        }
+    )
+)
+install(rich_console=console)
 
 with Progress(
     TextColumn('[bold green]{task.description}'),
