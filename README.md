@@ -57,7 +57,32 @@ with open("README.md") as readme:
 logger.info("fallback msg", rich=markdown)
 ```
 
-This works with static elements like `Table`, `Markdown`, and dynamic elements like `Status`, `Progress`, which have not been tested yet.
+This works with static elements like `Table`, `Markdown`
+
+When you need to use dynamic elements, you need to pass the rich `Console` object you are using to `install`. In fact, if you need to print any `ConsoleRenderable` to standard output, it is recommended to use a singleton `Console`.
+
+```python
+from richuru import install
+from rich import Console
+
+console = Console()
+install(console=console)
+
+with Progress(
+    TextColumn('[bold green]{task.description}'),
+    BarColumn(bar_width=None),
+    MofNCompleteColumn(),
+    '•',
+    TimeElapsedColumn(),
+    console=console,
+) as progress:
+    task = progress.add_task('[cyan]Working...', total=10)
+    while not progress.finished:
+        logger.success('Hello, World!')
+        progress.update(task, advance=1)
+        progress.refresh()
+        sleep(0.2)
+```
 
 # Open Source License
 

@@ -2,10 +2,10 @@
 
 简体中文 | [English](README.md)
 
-richuru 是一个轻量级的依赖, 为 [`loguru`](https://github.com/Delgan/loguru) 提供 [`rich`](https://github.com/willmcgugan/rich) 强大的终端渲染支持.
+richuru 是一个轻量级的依赖, 为 [`loguru`](https://github.com/Delgan/loguru) 提供 [`rich`](https://github.com/willmcgugan/rich) 强大的终端渲染支持。
 
 本项目来源并独立自 [`Graia Amnesia`](https://github.com/GraiaProject/Amnesia) 的组件 `graia.amnesia.log`,
-且由 @BlueGlassBlock 的原始实现修改而成.
+且由 @BlueGlassBlock 的原始实现修改而成。
 
 # Quick Start
 
@@ -24,7 +24,7 @@ elaina@localhost $ poetry add richuru
 ```
 >>> import richuru
 >>> richuru.install()
->>> 
+>>>
 >>> from loguru import logger
 >>> logger.info("Hello World!", alt="Hello, [bold magenta]World[/bold magenta]!")
 ```
@@ -57,7 +57,32 @@ with open("README.md") as readme:
 logger.info("fallback msg", rich=markdown)
 ```
 
-这适用于像是 `Table`, `Markdown` 这样的静态元素, 而像是 `Status`, `Progress` 这样的动态元素还尚未经过测试.
+这适用于像是 `Table`, `Markdown` 这样的静态元素。
+
+当需要使用动态元素时，需要将你所使用的 rich `Console` 对象传入 `install`。实际上，如果需要向标准输出打印任何 `ConsoleRenderable`，都推荐使用一个 `Console` 的单例。
+
+```python
+from richuru import install
+from rich import Console
+
+console = Console()
+install(console=console)
+
+with Progress(
+    TextColumn('[bold green]{task.description}'),
+    BarColumn(bar_width=None),
+    MofNCompleteColumn(),
+    '•',
+    TimeElapsedColumn(),
+    console=console,
+) as progress:
+    task = progress.add_task('[cyan]Working...', total=10)
+    while not progress.finished:
+        logger.success('Hello, World!')
+        progress.update(task, advance=1)
+        progress.refresh()
+        sleep(0.2)
+```
 
 # 开源协议相关
 
