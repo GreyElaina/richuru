@@ -1,6 +1,6 @@
 [project]
 name = "richuru"
-version = "0.1.1"
+version = "0.1.2"
 description = "a bridge between loguru & rich, rich's powerful render in loguru!"
 authors = [
     {name = "GreyElaina", email = "GreyElaina@outlook.com"},
@@ -16,5 +16,5 @@ license = {text = "MIT"}
 [tool.pdm]
 
 [build-system]
-requires = ["pdm-pep517>=0.12.0"]
-build-backend = "pdm.pep517.api"
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
